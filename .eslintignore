@@ -1,0 +1,15 @@
+node_modules
+dist
+build
+release
+server.js
+webpack.*.js
+*.html
+*.log
+*.json
+*.css
+coverage
+.next
+out
+
+next.config.js

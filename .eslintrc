@@ -1,0 +1,29 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb-typescript",
+    "prettier",
+    "prettier/react",
+    "prettier/@typescript-eslint"
+  ],
+  "plugins": ["@typescript-eslint", "eslint-comments", "react-hooks"],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "settings": {
+    "polyfills": ["Promise", "object-assign"]
+  },
+  "rules": {
+    "react/jsx-props-no-spreading": 0,
+    "react/self-closing-comp": 0,
+    "react/prop-types": 0,
+    "react/destructuring-assignment": 0,
+    "import/no-unresolved": [2, { "ignore": ["^@/"] }],
+    "import/prefer-default-export": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "no-console": [1, { "allow": ["warn", "error"] }]
+  }
+}
