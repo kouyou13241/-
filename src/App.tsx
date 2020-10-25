@@ -3,6 +3,12 @@ import './App.css';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 /*在学长的帮助下完成，自己要掌握*/
+function Changetime(time: string | number | Date)
+{
+    let outcome=new Date(time);
+    let final=String(outcome);
+    return final;
+}
 function Getnewsfliter(props: { numbers: React.ReactText; })
 {
  const[res,setRes]=useState<any>();
@@ -15,6 +21,12 @@ function Getnewsfliter(props: { numbers: React.ReactText; })
    );
     },[]); 
  
+    function Time()
+    {
+      let a=res?Changetime(res.data.value[props.numbers].gmtCreate):'waiting';
+      let b=a.substring(4,16);
+      return b;
+    }
   return (
      <div className="newsOfresearchGroup">
   <div className="news-discription">
@@ -65,7 +77,7 @@ function Getnewsfliter(props: { numbers: React.ReactText; })
             </svg>
           </div>
           <div>
-            <p id="news-font">2020-10-16</p>
+            <p id="news-font">{Time()}</p>
           </div>
         </div>
       </div>
@@ -75,6 +87,92 @@ function Getnewsfliter(props: { numbers: React.ReactText; })
     </div>
   </div>
 </div>);
+}
+function Getteachersfliter(props:{numbers:React.ReactText;})
+{
+  const[res,setRes]=useState<any>();
+
+ useEffect(()=>{
+   fetch('/api/sci/teacher/filter?page=1&rows=3').then(
+     async (response)=> {
+     setRes(await response.json());
+     }
+   );
+    },[]); 
+    return( 
+    <div className="content-leaderteam">
+    <div className="content-leaderteam-left">
+      <div>
+        <img src={require('./photos/导师团队.jpg')}></img>
+      </div>
+      <div id="flex-row">
+        <div>
+          <p id="paragraph-big">{res?res.data.value[props.numbers].name :'waiting'}</p>
+        </div>
+        <div>教授 博士生导师</div>
+      </div>
+      <div id="flex-row">任职：{res?res.data.value[props.numbers].name :'waiting'}</div>
+      <div id="flex-row">
+        <div>通讯地址：{res?res.data.value[props.numbers].address :'waiting'}</div>
+      </div>
+      <div id="flex-row">
+        <div>联系电话：027-68775371</div>
+      </div>
+      <div id="flex-row">
+        <div>电⼦邮件：bingli@whu.edu.cn</div>
+      </div>
+    </div>
+
+    <div className="content-leaderteam-right">
+      <div id="flex-row">
+        <div id="title-small-font">研究方向</div>
+      </div>
+      <div id="flex-row">
+        <div>
+        {res?res.data.value[props.numbers].direction :'waiting'}
+        </div>
+      </div>
+      <div id="flex-row">
+        <div id="title-small-font">学习⼯作经历</div>
+      </div>
+      <div id="flex-row">
+      {res?res.data.value[props.numbers].award :'waiting'}
+      </div>
+      <div id="flex-row">
+        <div id="title-small-font">重要学术奖项</div>
+      </div>
+      <div id="flex-row">
+        <div>
+        {res?res.data.value[props.numbers].experience :'waiting'}
+        </div>
+      </div>
+      <div id="flex-row">
+        <div id="title-small-font">发表论⽂</div>
+      </div>
+      <div id="flex-row">
+        <div>
+          杨荣， 李兵. 流程⽚段⾃适应重⽤策略研究. 软件学报，2015,
+          26(4):778-789.（EI）
+          <br />
+          熊伟， 李兵. 云计算环境下基于能耗感知的弹性资源管理机制.
+          四川⼤学学报 (⼯程科学
+          <br />
+          版) .2015, 2[3]. （EI）
+          <br />
+          汪⽂娟， 李兵， 何鹏. 开源软件社区开发者⾓⾊的演化分析.
+          复杂系统与复杂性科学.
+          <br />
+          2015, 12(1). （EI） <br />
+          何鹏， 李兵， 程璨， 曾诚.
+          开源软件系统中社会-技术⽹络的协同演化分析. 复杂系统与
+          <br />
+          复杂性科学. 2015, 12(2). （EI）
+          <br />
+        </div>
+      </div>
+    </div>
+    </div>
+ );
 }
 
 function Downloadlayer(props: {
