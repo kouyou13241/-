@@ -243,7 +243,10 @@ ul{
     font-size: 25px;
     margin-top: 15px;
     margin-bottom: 20px;
+    width:200px;
+    height:100px;
   }
+  #news-top-font p{margin:10px;}
   #news-bottom-font {
     display: flex;
     flex-wrap: wrap;
