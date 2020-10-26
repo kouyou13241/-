@@ -5,7 +5,7 @@ function NewsShow() {
     const [res, setRes] = useState<any>();
     
     useEffect(() => {
-      fetch('/api/sci/news/filter?page=1&rows=3').then(async (response) => {
+      fetch('/api/sci/news/filter').then(async (response) => {
         setRes(await response.json());
       });
     }, []);
@@ -101,16 +101,16 @@ function NewsShow() {
       var pages=Math.ceil(count/3);
       console.log(res.data.count);
       let remain = count - (pages - 1) * 3;
-  
+      var start = (page - 1) * 3 ;
       if (page < pages) 
       {
-        let start = (page - 1) * 3 ;
+        
         return (
           <div>
           <div id="news-flex">
             <Getnewsfliter  numbers={start} />
-            <Getnewsfliter  numbers={start + 1} />
-            <Getnewsfliter  numbers={start + 2} />
+            <Getnewsfliter  numbers={start+1} />
+            <Getnewsfliter  numbers={start+2} />
           </div>
            <Fliptool/>
             </div>
@@ -118,7 +118,7 @@ function NewsShow() {
       }
       if(page==pages)
       {
-        let start = (page - 1) * 3 ;
+        
         if(remain==1)
         return(
           <div>
@@ -164,7 +164,7 @@ function NewsShow() {
    const[res,setRes]=useState<any>();
   
    useEffect(()=>{
-     fetch('/api/sci/news/filter?page=1&rows=3').then(
+     fetch('/api/sci/news/filter').then(
        async (response)=> {
        setRes(await response.json());
        }
