@@ -2,181 +2,98 @@ import React, { Component, useEffect, useState } from 'react';
 import './App.css';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-/*在学长的帮助下完成，自己要掌握*/
-function Changetime(time: string | number | Date)
-{
-    let outcome=new Date(time);
-    let final=String(outcome);
-    return final;
-}
-function Getnewsfliter(props: { numbers: React.ReactText; })
-{
- const[res,setRes]=useState<any>();
-
- useEffect(()=>{
-   fetch('/api/sci/news/filter?page=1&rows=3').then(
-     async (response)=> {
-     setRes(await response.json());
-     }
-   );
-    },[]); 
- 
-    function Time()
-    {
-      let a=res?Changetime(res.data.value[props.numbers].gmtCreate):'waiting';
-      let b=a.substring(4,16);
-      return b;
-    }
+import Title from './Title'
+import Bottom from './Bottom'
+import NewsShow from './NewsShow'
+function Getteachersfliter(props: { numbers: React.ReactText }) {
+  const [res, setRes] = useState<any>();
+  useEffect(() => {
+    fetch('/api/sci/teacher/filter?page=1&rows=3').then(async (response) => {
+      setRes(await response.json());
+    });
+  }, []);
   return (
-     <div className="newsOfresearchGroup">
-  <div className="news-discription">
-    <div>
-      <div>
-        <img
-          id="nobel-picture"
-          src={require('./photos/homepage-nobel.jpg')}
-        />
-      </div>
-      <div id="news-top-font">
-      {res?res.data.value[props.numbers].title:'waiting'}
-      </div>
-      <div className="news-discription-dataflex">
-        <div id="svg-flex">
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="17"
-              height="17"
-              viewBox="0 0 17 17"
-            >
-              <path
-                id="Icon_ionic-ios-contact"
-                data-name="Icon ionic-ios-contact"
-                d="M11.875,3.375h0A8.5,8.5,0,0,0,3.424,10.98a8.191,8.191,0,0,0,0,1.79,8.5,8.5,0,0,0,8.451,7.605h0a8.5,8.5,0,0,0,0-17ZM17.425,16.7c-.928-.351-2.431-.866-3.367-1.144-.1-.029-.11-.037-.11-.437a2.326,2.326,0,0,1,.27-.952,4.749,4.749,0,0,0,.376-1.291,2.871,2.871,0,0,0,.556-1.344,1.793,1.793,0,0,0-.016-1.128.724.724,0,0,1-.025-.069,7.349,7.349,0,0,1,.127-1.586,2.92,2.92,0,0,0-.609-2.1,3.124,3.124,0,0,0-2.391-1.144h-.715a3.12,3.12,0,0,0-2.37,1.144,2.907,2.907,0,0,0-.613,2.1,7.349,7.349,0,0,1,.127,1.586c-.008.029-.016.049-.025.074a1.763,1.763,0,0,0-.016,1.128,2.916,2.916,0,0,0,.556,1.344,4.946,4.946,0,0,0,.376,1.291,2.283,2.283,0,0,1,.155.964c0,.4-.016.409-.106.437-.969.286-2.407.793-3.269,1.136a7.355,7.355,0,1,1,12.9-4.834A7.288,7.288,0,0,1,17.425,16.7Z"
-                transform="translate(-3.375 -3.375)"
-              />
-            </svg>
-          </div>
-          <div>
-            <p id="news-font">{res?res.data.value[props.numbers].userId :'waiting'}</p>
-          </div>
-        </div>
-        <div id="svg-flex">
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="15.5"
-              height="17"
-              viewBox="0 0 15.5 17"
-            >
-              <path
-                id="Icon_awesome-calendar-times"
-                data-name="Icon awesome-calendar-times"
-                d="M15.085,5.313H.415A.408.408,0,0,1,0,4.914v-1.2A1.629,1.629,0,0,1,1.661,2.125H3.321V.4A.408.408,0,0,1,3.737,0H5.121a.408.408,0,0,1,.415.4V2.125H9.964V.4a.408.408,0,0,1,.415-.4h1.384a.408.408,0,0,1,.415.4V2.125h1.661A1.629,1.629,0,0,1,15.5,3.719v1.2A.408.408,0,0,1,15.085,5.313ZM.415,6.375h14.67a.408.408,0,0,1,.415.4v8.633A1.629,1.629,0,0,1,13.839,17H1.661A1.629,1.629,0,0,1,0,15.406V6.773A.408.408,0,0,1,.415,6.375Zm8.9,5.313,1.664-1.6a.388.388,0,0,0,0-.564L10,8.586a.428.428,0,0,0-.588,0l-1.664,1.6-1.664-1.6a.428.428,0,0,0-.588,0l-.979.94a.388.388,0,0,0,0,.564l1.664,1.6-1.664,1.6a.388.388,0,0,0,0,.564l.979.94a.428.428,0,0,0,.588,0l1.664-1.6,1.664,1.6a.428.428,0,0,0,.588,0l.979-.94a.388.388,0,0,0,0-.564Z"
-              />
-            </svg>
-          </div>
-          <div>
-            <p id="news-font">{Time()}</p>
-          </div>
-        </div>
-      </div>
-      <div id="news-bottom-font">
-        祝贺实验室XXX、XXX、XXX在XXX杂志发表文章.....................................
-      </div>
-    </div>
-  </div>
-</div>);
-}
-function Getteachersfliter(props:{numbers:React.ReactText;})
-{
-  const[res,setRes]=useState<any>();
-
- useEffect(()=>{
-   fetch('/api/sci/teacher/filter?page=1&rows=3').then(
-     async (response)=> {
-     setRes(await response.json());
-     }
-   );
-    },[]); 
-    return( 
     <div className="content-leaderteam">
-    <div className="content-leaderteam-left">
-      <div>
-        <img src={require('./photos/导师团队.jpg')}></img>
-      </div>
-      <div id="flex-row">
+      <div className="content-leaderteam-left">
         <div>
-          <p id="paragraph-big">{res?res.data.value[props.numbers].name :'waiting'}</p>
+          <img src={require('./photos/导师团队.jpg')}></img>
         </div>
-        <div>教授 博士生导师</div>
+        <div id="flex-row">
+          <div>
+            <p id="paragraph-big">
+              {res ? res.data.value[props.numbers].name : 'waiting'}
+            </p>
+          </div>
+          <div>教授 博士生导师</div>
+        </div>
+        <div id="flex-row">
+          任职：{res ? res.data.value[props.numbers].name : 'waiting'}
+        </div>
+        <div id="flex-row">
+          <div>
+            通讯地址：{res ? res.data.value[props.numbers].address : 'waiting'}
+          </div>
+        </div>
+        <div id="flex-row">
+          <div>联系电话：027-68775371</div>
+        </div>
+        <div id="flex-row">
+          <div>电⼦邮件：bingli@whu.edu.cn</div>
+        </div>
       </div>
-      <div id="flex-row">任职：{res?res.data.value[props.numbers].name :'waiting'}</div>
-      <div id="flex-row">
-        <div>通讯地址：{res?res.data.value[props.numbers].address :'waiting'}</div>
-      </div>
-      <div id="flex-row">
-        <div>联系电话：027-68775371</div>
-      </div>
-      <div id="flex-row">
-        <div>电⼦邮件：bingli@whu.edu.cn</div>
-      </div>
-    </div>
 
-    <div className="content-leaderteam-right">
-      <div id="flex-row">
-        <div id="title-small-font">研究方向</div>
-      </div>
-      <div id="flex-row">
-        <div>
-        {res?res.data.value[props.numbers].direction :'waiting'}
+      <div className="content-leaderteam-right">
+        <div id="flex-row">
+          <div id="title-small-font">研究方向</div>
         </div>
-      </div>
-      <div id="flex-row">
-        <div id="title-small-font">学习⼯作经历</div>
-      </div>
-      <div id="flex-row">
-      {res?res.data.value[props.numbers].award :'waiting'}
-      </div>
-      <div id="flex-row">
-        <div id="title-small-font">重要学术奖项</div>
-      </div>
-      <div id="flex-row">
-        <div>
-        {res?res.data.value[props.numbers].experience :'waiting'}
+        <div id="flex-row">
+          <div>{res ? res.data.value[props.numbers].direction : 'waiting'}</div>
         </div>
-      </div>
-      <div id="flex-row">
-        <div id="title-small-font">发表论⽂</div>
-      </div>
-      <div id="flex-row">
-        <div>
-          杨荣， 李兵. 流程⽚段⾃适应重⽤策略研究. 软件学报，2015,
-          26(4):778-789.（EI）
-          <br />
-          熊伟， 李兵. 云计算环境下基于能耗感知的弹性资源管理机制.
-          四川⼤学学报 (⼯程科学
-          <br />
-          版) .2015, 2[3]. （EI）
-          <br />
-          汪⽂娟， 李兵， 何鹏. 开源软件社区开发者⾓⾊的演化分析.
-          复杂系统与复杂性科学.
-          <br />
-          2015, 12(1). （EI） <br />
-          何鹏， 李兵， 程璨， 曾诚.
-          开源软件系统中社会-技术⽹络的协同演化分析. 复杂系统与
-          <br />
-          复杂性科学. 2015, 12(2). （EI）
-          <br />
+        <div id="flex-row">
+          <div id="title-small-font">学习⼯作经历</div>
+        </div>
+        <div id="flex-row">
+          {res ? res.data.value[props.numbers].award : 'waiting'}
+        </div>
+        <div id="flex-row">
+          <div id="title-small-font">重要学术奖项</div>
+        </div>
+        <div id="flex-row">
+          <div>
+            {res ? res.data.value[props.numbers].experience : 'waiting'}
+          </div>
+        </div>
+        <div id="flex-row">
+          <div id="title-small-font">发表论⽂</div>
+        </div>
+        <div id="flex-row">
+          <div>
+            杨荣， 李兵. 流程⽚段⾃适应重⽤策略研究. 软件学报，2015,
+            26(4):778-789.（EI）
+            <br />
+            熊伟， 李兵. 云计算环境下基于能耗感知的弹性资源管理机制.
+            四川⼤学学报 (⼯程科学
+            <br />
+            版) .2015, 2[3]. （EI）
+            <br />
+            汪⽂娟， 李兵， 何鹏. 开源软件社区开发者⾓⾊的演化分析.
+            复杂系统与复杂性科学.
+            <br />
+            2015, 12(1). （EI） <br />
+            何鹏， 李兵， 程璨， 曾诚.
+            开源软件系统中社会-技术⽹络的协同演化分析. 复杂系统与
+            <br />
+            复杂性科学. 2015, 12(2). （EI）
+            <br />
+          </div>
         </div>
       </div>
     </div>
-    </div>
- );
+  );
 }
 
 function Downloadlayer(props: {
-  form: React.ReactNode; 
+  form: React.ReactNode;
   space: React.ReactNode;
   numbers: React.ReactNode;
   date: React.ReactNode;
@@ -210,151 +127,7 @@ function Downloadlayer(props: {
     </div>
   );
 }
-function Title() {
-  return (
-    <div className="title">
-      <div className="title-left">
-        <div>
-          <img
-            className="title-picture"
-            src={require('./photos/武大校标.jpg')}
-          />
-        </div>
-        <div>
-          <p id="big-font">李兵实验室</p>
-        </div>
-      </div>
-      <div className="title-right">
-        <ul className="nav">
-          <li>
-            <Link className="nav-Link" to="/">
-              {' '}
-              首页
-            </Link>
-          </li>
-          <li className="drop-down">
-            <Link className="nav-Link" to="/leaderteam">
-              导师团队
-            </Link>
-            <ul className="drop-down-content">
-              <li className="drop-down">
-                <Link className="nav-Link " to="/leaderteam">
-                  导师团队
-                </Link>
-                <ul className="drop-down-content-1">
-                  <li>
-                    <Link className="nav-Link-1" to="/leaderteam">
-                      导师团队
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="nav-Link-1" to="/leaderteam">
-                      导师团队
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="nav-Link-1" to="/leaderteam">
-                      导师团队
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="nav-Link-1" to="/leaderteam">
-                      导师团队
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <Link className="nav-Link" to="/leaderteam">
-                  导师团队
-                </Link>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <Link className="nav-Link" to="/researchtarget">
-              研究方向
-            </Link>
-          </li>
-          <li>
-            <Link className="nav-Link" to="/articalpublished">
-              发表文章
-            </Link>
-          </li>
-          <li>
-            <Link className="nav-Link" to="/teamnews">
-              组内新闻
-            </Link>
-          </li>
-          <li>
-            <Link className="nav-Link" to="/studentshow">
-              学生风采
-            </Link>
-          </li>
-          <li>
-            <Link className="nav-Link" to="/resoursedownload">
-              资源下载
-            </Link>
-          </li>
-          <li>
-            <Link className="nav-Link" to="/english">
-              english
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </div>
-  );
-}
-function Bottom() {
-  return (
-    <div className="bottom">
-      <div className="bottom-left"> Copyright 2019.All Right Reserve</div>
-      <div className="bottom-mid">
-        <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="22"
-            height="31.246"
-            viewBox="0 0 22 31.246"
-          >
-            <path
-              id="Icon_material-location-on"
-              data-="Icon material-location-on"
-              d="M18,3A10.492,10.492,0,0,0,7.5,13.5C7.5,21.375,18,33,18,33S28.5,21.375,28.5,13.5A10.492,10.492,0,0,0,18,3Zm0,14.25a3.75,3.75,0,1,1,3.75-3.75A3.751,3.751,0,0,1,18,17.25Z"
-              transform="translate(-7 -2.5)"
-              fill="#f6fafc"
-              stroke="#000"
-              stroke-width="1"
-            />
-          </svg>
-        </div>
-        <div>地址：湖北省武汉大学国家网络安全学院12F</div>
-      </div>
-      <div className="bottom-right">
-        <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="34.681"
-            height="34.651"
-            viewBox="0 0 34.681 34.651"
-          >
-            <path
-              id="Icon_awesome-phone-alt"
-              data-="Icon awesome-phone-alt"
-              d="M23.053,16.485,17.862,14.3a1.125,1.125,0,0,0-1.3.314l-2.3,2.761A17.037,17.037,0,0,1,6.053,9.3L8.862,7.04a1.079,1.079,0,0,0,.32-1.276L6.957.661A1.125,1.125,0,0,0,5.682.028L.862,1.122A1.1,1.1,0,0,0,0,2.187,21.324,21.324,0,0,0,21.505,23.329a1.109,1.109,0,0,0,1.085-.848L23.7,17.743a1.1,1.1,0,0,0-.649-1.258Z"
-              transform="translate(16.317 0.718) rotate(42)"
-              fill="#f8fafc"
-              stroke="#000"
-              stroke-width="1"
-            />
-          </svg>
-        </div>
-        <div>联系电话：050-55555555</div>
-      </div>
-    </div>
-  );
-}
+
 
 class HomePage extends Component {
   render() {
@@ -365,10 +138,8 @@ class HomePage extends Component {
         </div>
         <div id="news-total-flex">
           <p id="news-title">课题组新闻</p>
-          <div id="news-flex">
-            <Getnewsfliter numbers='0'/>
-            <Getnewsfliter numbers='1'/>
-            <Getnewsfliter numbers='2'/>
+          <div >
+            <NewsShow/>
           </div>
         </div>
       </div>
@@ -494,350 +265,352 @@ class TeamNews extends Component {
   render() {
     return (
       <div>
-        <div id="news-total-flex">
-          <div id="news-flex">
-            <div className="newsOfresearchGroup">
-              <div className="news-discription">
-                <div>
+        <div>
+          <div id="news-total-flex">
+            <div id="news-flex">
+              <div className="newsOfresearchGroup">
+                <div className="news-discription">
                   <div>
-                    <img
-                      id="nobel-picture"
-                      src={require('./photos/homepage-nobel.jpg')}
-                    />
-                  </div>
-                  <div id="news-top-font">祝贺文章发表</div>
-                  <div className="news-discription-dataflex">
-                    <div id="svg-flex">
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="17"
-                          height="17"
-                          viewBox="0 0 17 17"
-                        >
-                          <path
-                            id="Icon_ionic-ios-contact"
-                            data-name="Icon ionic-ios-contact"
-                            d="M11.875,3.375h0A8.5,8.5,0,0,0,3.424,10.98a8.191,8.191,0,0,0,0,1.79,8.5,8.5,0,0,0,8.451,7.605h0a8.5,8.5,0,0,0,0-17ZM17.425,16.7c-.928-.351-2.431-.866-3.367-1.144-.1-.029-.11-.037-.11-.437a2.326,2.326,0,0,1,.27-.952,4.749,4.749,0,0,0,.376-1.291,2.871,2.871,0,0,0,.556-1.344,1.793,1.793,0,0,0-.016-1.128.724.724,0,0,1-.025-.069,7.349,7.349,0,0,1,.127-1.586,2.92,2.92,0,0,0-.609-2.1,3.124,3.124,0,0,0-2.391-1.144h-.715a3.12,3.12,0,0,0-2.37,1.144,2.907,2.907,0,0,0-.613,2.1,7.349,7.349,0,0,1,.127,1.586c-.008.029-.016.049-.025.074a1.763,1.763,0,0,0-.016,1.128,2.916,2.916,0,0,0,.556,1.344,4.946,4.946,0,0,0,.376,1.291,2.283,2.283,0,0,1,.155.964c0,.4-.016.409-.106.437-.969.286-2.407.793-3.269,1.136a7.355,7.355,0,1,1,12.9-4.834A7.288,7.288,0,0,1,17.425,16.7Z"
-                            transform="translate(-3.375 -3.375)"
-                          />
-                        </svg>
+                    <div>
+                      <img
+                        id="nobel-picture"
+                        src={require('./photos/homepage-nobel.jpg')}
+                      />
+                    </div>
+                    <div id="news-top-font">祝贺文章发表</div>
+                    <div className="news-discription-dataflex">
+                      <div id="svg-flex">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="17"
+                            height="17"
+                            viewBox="0 0 17 17"
+                          >
+                            <path
+                              id="Icon_ionic-ios-contact"
+                              data-name="Icon ionic-ios-contact"
+                              d="M11.875,3.375h0A8.5,8.5,0,0,0,3.424,10.98a8.191,8.191,0,0,0,0,1.79,8.5,8.5,0,0,0,8.451,7.605h0a8.5,8.5,0,0,0,0-17ZM17.425,16.7c-.928-.351-2.431-.866-3.367-1.144-.1-.029-.11-.037-.11-.437a2.326,2.326,0,0,1,.27-.952,4.749,4.749,0,0,0,.376-1.291,2.871,2.871,0,0,0,.556-1.344,1.793,1.793,0,0,0-.016-1.128.724.724,0,0,1-.025-.069,7.349,7.349,0,0,1,.127-1.586,2.92,2.92,0,0,0-.609-2.1,3.124,3.124,0,0,0-2.391-1.144h-.715a3.12,3.12,0,0,0-2.37,1.144,2.907,2.907,0,0,0-.613,2.1,7.349,7.349,0,0,1,.127,1.586c-.008.029-.016.049-.025.074a1.763,1.763,0,0,0-.016,1.128,2.916,2.916,0,0,0,.556,1.344,4.946,4.946,0,0,0,.376,1.291,2.283,2.283,0,0,1,.155.964c0,.4-.016.409-.106.437-.969.286-2.407.793-3.269,1.136a7.355,7.355,0,1,1,12.9-4.834A7.288,7.288,0,0,1,17.425,16.7Z"
+                              transform="translate(-3.375 -3.375)"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p id="news-font">朱江源</p>
+                        </div>
                       </div>
-                      <div>
-                        <p id="news-font">朱江源</p>
+                      <div id="svg-flex">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="15.5"
+                            height="17"
+                            viewBox="0 0 15.5 17"
+                          >
+                            <path
+                              id="Icon_awesome-calendar-times"
+                              data-name="Icon awesome-calendar-times"
+                              d="M15.085,5.313H.415A.408.408,0,0,1,0,4.914v-1.2A1.629,1.629,0,0,1,1.661,2.125H3.321V.4A.408.408,0,0,1,3.737,0H5.121a.408.408,0,0,1,.415.4V2.125H9.964V.4a.408.408,0,0,1,.415-.4h1.384a.408.408,0,0,1,.415.4V2.125h1.661A1.629,1.629,0,0,1,15.5,3.719v1.2A.408.408,0,0,1,15.085,5.313ZM.415,6.375h14.67a.408.408,0,0,1,.415.4v8.633A1.629,1.629,0,0,1,13.839,17H1.661A1.629,1.629,0,0,1,0,15.406V6.773A.408.408,0,0,1,.415,6.375Zm8.9,5.313,1.664-1.6a.388.388,0,0,0,0-.564L10,8.586a.428.428,0,0,0-.588,0l-1.664,1.6-1.664-1.6a.428.428,0,0,0-.588,0l-.979.94a.388.388,0,0,0,0,.564l1.664,1.6-1.664,1.6a.388.388,0,0,0,0,.564l.979.94a.428.428,0,0,0,.588,0l1.664-1.6,1.664,1.6a.428.428,0,0,0,.588,0l.979-.94a.388.388,0,0,0,0-.564Z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p id="news-font">2020-10-16</p>
+                        </div>
                       </div>
                     </div>
-                    <div id="svg-flex">
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="15.5"
-                          height="17"
-                          viewBox="0 0 15.5 17"
-                        >
-                          <path
-                            id="Icon_awesome-calendar-times"
-                            data-name="Icon awesome-calendar-times"
-                            d="M15.085,5.313H.415A.408.408,0,0,1,0,4.914v-1.2A1.629,1.629,0,0,1,1.661,2.125H3.321V.4A.408.408,0,0,1,3.737,0H5.121a.408.408,0,0,1,.415.4V2.125H9.964V.4a.408.408,0,0,1,.415-.4h1.384a.408.408,0,0,1,.415.4V2.125h1.661A1.629,1.629,0,0,1,15.5,3.719v1.2A.408.408,0,0,1,15.085,5.313ZM.415,6.375h14.67a.408.408,0,0,1,.415.4v8.633A1.629,1.629,0,0,1,13.839,17H1.661A1.629,1.629,0,0,1,0,15.406V6.773A.408.408,0,0,1,.415,6.375Zm8.9,5.313,1.664-1.6a.388.388,0,0,0,0-.564L10,8.586a.428.428,0,0,0-.588,0l-1.664,1.6-1.664-1.6a.428.428,0,0,0-.588,0l-.979.94a.388.388,0,0,0,0,.564l1.664,1.6-1.664,1.6a.388.388,0,0,0,0,.564l.979.94a.428.428,0,0,0,.588,0l1.664-1.6,1.664,1.6a.428.428,0,0,0,.588,0l.979-.94a.388.388,0,0,0,0-.564Z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p id="news-font">2020-10-16</p>
-                      </div>
+                    <div id="news-bottom-font">
+                      祝贺实验室XXX、XXX、XXX在XXX杂志发表文章.....................................
                     </div>
-                  </div>
-                  <div id="news-bottom-font">
-                    祝贺实验室XXX、XXX、XXX在XXX杂志发表文章.....................................
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="newsOfresearchGroup">
-              <div className="news-discription">
-                <div>
+              <div className="newsOfresearchGroup">
+                <div className="news-discription">
                   <div>
-                    <img
-                      id="nobel-picture"
-                      src={require('./photos/homepage-nobel.jpg')}
-                    />
-                  </div>
-                  <div id="news-top-font">祝贺文章发表</div>
-                  <div className="news-discription-dataflex">
-                    <div id="svg-flex">
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="17"
-                          height="17"
-                          viewBox="0 0 17 17"
-                        >
-                          <path
-                            id="Icon_ionic-ios-contact"
-                            data-name="Icon ionic-ios-contact"
-                            d="M11.875,3.375h0A8.5,8.5,0,0,0,3.424,10.98a8.191,8.191,0,0,0,0,1.79,8.5,8.5,0,0,0,8.451,7.605h0a8.5,8.5,0,0,0,0-17ZM17.425,16.7c-.928-.351-2.431-.866-3.367-1.144-.1-.029-.11-.037-.11-.437a2.326,2.326,0,0,1,.27-.952,4.749,4.749,0,0,0,.376-1.291,2.871,2.871,0,0,0,.556-1.344,1.793,1.793,0,0,0-.016-1.128.724.724,0,0,1-.025-.069,7.349,7.349,0,0,1,.127-1.586,2.92,2.92,0,0,0-.609-2.1,3.124,3.124,0,0,0-2.391-1.144h-.715a3.12,3.12,0,0,0-2.37,1.144,2.907,2.907,0,0,0-.613,2.1,7.349,7.349,0,0,1,.127,1.586c-.008.029-.016.049-.025.074a1.763,1.763,0,0,0-.016,1.128,2.916,2.916,0,0,0,.556,1.344,4.946,4.946,0,0,0,.376,1.291,2.283,2.283,0,0,1,.155.964c0,.4-.016.409-.106.437-.969.286-2.407.793-3.269,1.136a7.355,7.355,0,1,1,12.9-4.834A7.288,7.288,0,0,1,17.425,16.7Z"
-                            transform="translate(-3.375 -3.375)"
-                          />
-                        </svg>
+                    <div>
+                      <img
+                        id="nobel-picture"
+                        src={require('./photos/homepage-nobel.jpg')}
+                      />
+                    </div>
+                    <div id="news-top-font">祝贺文章发表</div>
+                    <div className="news-discription-dataflex">
+                      <div id="svg-flex">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="17"
+                            height="17"
+                            viewBox="0 0 17 17"
+                          >
+                            <path
+                              id="Icon_ionic-ios-contact"
+                              data-name="Icon ionic-ios-contact"
+                              d="M11.875,3.375h0A8.5,8.5,0,0,0,3.424,10.98a8.191,8.191,0,0,0,0,1.79,8.5,8.5,0,0,0,8.451,7.605h0a8.5,8.5,0,0,0,0-17ZM17.425,16.7c-.928-.351-2.431-.866-3.367-1.144-.1-.029-.11-.037-.11-.437a2.326,2.326,0,0,1,.27-.952,4.749,4.749,0,0,0,.376-1.291,2.871,2.871,0,0,0,.556-1.344,1.793,1.793,0,0,0-.016-1.128.724.724,0,0,1-.025-.069,7.349,7.349,0,0,1,.127-1.586,2.92,2.92,0,0,0-.609-2.1,3.124,3.124,0,0,0-2.391-1.144h-.715a3.12,3.12,0,0,0-2.37,1.144,2.907,2.907,0,0,0-.613,2.1,7.349,7.349,0,0,1,.127,1.586c-.008.029-.016.049-.025.074a1.763,1.763,0,0,0-.016,1.128,2.916,2.916,0,0,0,.556,1.344,4.946,4.946,0,0,0,.376,1.291,2.283,2.283,0,0,1,.155.964c0,.4-.016.409-.106.437-.969.286-2.407.793-3.269,1.136a7.355,7.355,0,1,1,12.9-4.834A7.288,7.288,0,0,1,17.425,16.7Z"
+                              transform="translate(-3.375 -3.375)"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p id="news-font">朱江源</p>
+                        </div>
                       </div>
-                      <div>
-                        <p id="news-font">朱江源</p>
+                      <div id="svg-flex">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="15.5"
+                            height="17"
+                            viewBox="0 0 15.5 17"
+                          >
+                            <path
+                              id="Icon_awesome-calendar-times"
+                              data-name="Icon awesome-calendar-times"
+                              d="M15.085,5.313H.415A.408.408,0,0,1,0,4.914v-1.2A1.629,1.629,0,0,1,1.661,2.125H3.321V.4A.408.408,0,0,1,3.737,0H5.121a.408.408,0,0,1,.415.4V2.125H9.964V.4a.408.408,0,0,1,.415-.4h1.384a.408.408,0,0,1,.415.4V2.125h1.661A1.629,1.629,0,0,1,15.5,3.719v1.2A.408.408,0,0,1,15.085,5.313ZM.415,6.375h14.67a.408.408,0,0,1,.415.4v8.633A1.629,1.629,0,0,1,13.839,17H1.661A1.629,1.629,0,0,1,0,15.406V6.773A.408.408,0,0,1,.415,6.375Zm8.9,5.313,1.664-1.6a.388.388,0,0,0,0-.564L10,8.586a.428.428,0,0,0-.588,0l-1.664,1.6-1.664-1.6a.428.428,0,0,0-.588,0l-.979.94a.388.388,0,0,0,0,.564l1.664,1.6-1.664,1.6a.388.388,0,0,0,0,.564l.979.94a.428.428,0,0,0,.588,0l1.664-1.6,1.664,1.6a.428.428,0,0,0,.588,0l.979-.94a.388.388,0,0,0,0-.564Z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p id="news-font">2020-10-16</p>
+                        </div>
                       </div>
                     </div>
-                    <div id="svg-flex">
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="15.5"
-                          height="17"
-                          viewBox="0 0 15.5 17"
-                        >
-                          <path
-                            id="Icon_awesome-calendar-times"
-                            data-name="Icon awesome-calendar-times"
-                            d="M15.085,5.313H.415A.408.408,0,0,1,0,4.914v-1.2A1.629,1.629,0,0,1,1.661,2.125H3.321V.4A.408.408,0,0,1,3.737,0H5.121a.408.408,0,0,1,.415.4V2.125H9.964V.4a.408.408,0,0,1,.415-.4h1.384a.408.408,0,0,1,.415.4V2.125h1.661A1.629,1.629,0,0,1,15.5,3.719v1.2A.408.408,0,0,1,15.085,5.313ZM.415,6.375h14.67a.408.408,0,0,1,.415.4v8.633A1.629,1.629,0,0,1,13.839,17H1.661A1.629,1.629,0,0,1,0,15.406V6.773A.408.408,0,0,1,.415,6.375Zm8.9,5.313,1.664-1.6a.388.388,0,0,0,0-.564L10,8.586a.428.428,0,0,0-.588,0l-1.664,1.6-1.664-1.6a.428.428,0,0,0-.588,0l-.979.94a.388.388,0,0,0,0,.564l1.664,1.6-1.664,1.6a.388.388,0,0,0,0,.564l.979.94a.428.428,0,0,0,.588,0l1.664-1.6,1.664,1.6a.428.428,0,0,0,.588,0l.979-.94a.388.388,0,0,0,0-.564Z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p id="news-font">2020-10-16</p>
-                      </div>
+                    <div id="news-bottom-font">
+                      祝贺实验室XXX、XXX、XXX在XXX杂志发表文章.....................................
                     </div>
-                  </div>
-                  <div id="news-bottom-font">
-                    祝贺实验室XXX、XXX、XXX在XXX杂志发表文章.....................................
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="newsOfresearchGroup">
-              <div className="news-discription">
-                <div>
+              <div className="newsOfresearchGroup">
+                <div className="news-discription">
                   <div>
-                    <img
-                      id="nobel-picture"
-                      src={require('./photos/homepage-nobel.jpg')}
-                    />
-                  </div>
-                  <div id="news-top-font">祝贺文章发表</div>
-                  <div className="news-discription-dataflex">
-                    <div id="svg-flex">
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="17"
-                          height="17"
-                          viewBox="0 0 17 17"
-                        >
-                          <path
-                            id="Icon_ionic-ios-contact"
-                            data-name="Icon ionic-ios-contact"
-                            d="M11.875,3.375h0A8.5,8.5,0,0,0,3.424,10.98a8.191,8.191,0,0,0,0,1.79,8.5,8.5,0,0,0,8.451,7.605h0a8.5,8.5,0,0,0,0-17ZM17.425,16.7c-.928-.351-2.431-.866-3.367-1.144-.1-.029-.11-.037-.11-.437a2.326,2.326,0,0,1,.27-.952,4.749,4.749,0,0,0,.376-1.291,2.871,2.871,0,0,0,.556-1.344,1.793,1.793,0,0,0-.016-1.128.724.724,0,0,1-.025-.069,7.349,7.349,0,0,1,.127-1.586,2.92,2.92,0,0,0-.609-2.1,3.124,3.124,0,0,0-2.391-1.144h-.715a3.12,3.12,0,0,0-2.37,1.144,2.907,2.907,0,0,0-.613,2.1,7.349,7.349,0,0,1,.127,1.586c-.008.029-.016.049-.025.074a1.763,1.763,0,0,0-.016,1.128,2.916,2.916,0,0,0,.556,1.344,4.946,4.946,0,0,0,.376,1.291,2.283,2.283,0,0,1,.155.964c0,.4-.016.409-.106.437-.969.286-2.407.793-3.269,1.136a7.355,7.355,0,1,1,12.9-4.834A7.288,7.288,0,0,1,17.425,16.7Z"
-                            transform="translate(-3.375 -3.375)"
-                          />
-                        </svg>
+                    <div>
+                      <img
+                        id="nobel-picture"
+                        src={require('./photos/homepage-nobel.jpg')}
+                      />
+                    </div>
+                    <div id="news-top-font">祝贺文章发表</div>
+                    <div className="news-discription-dataflex">
+                      <div id="svg-flex">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="17"
+                            height="17"
+                            viewBox="0 0 17 17"
+                          >
+                            <path
+                              id="Icon_ionic-ios-contact"
+                              data-name="Icon ionic-ios-contact"
+                              d="M11.875,3.375h0A8.5,8.5,0,0,0,3.424,10.98a8.191,8.191,0,0,0,0,1.79,8.5,8.5,0,0,0,8.451,7.605h0a8.5,8.5,0,0,0,0-17ZM17.425,16.7c-.928-.351-2.431-.866-3.367-1.144-.1-.029-.11-.037-.11-.437a2.326,2.326,0,0,1,.27-.952,4.749,4.749,0,0,0,.376-1.291,2.871,2.871,0,0,0,.556-1.344,1.793,1.793,0,0,0-.016-1.128.724.724,0,0,1-.025-.069,7.349,7.349,0,0,1,.127-1.586,2.92,2.92,0,0,0-.609-2.1,3.124,3.124,0,0,0-2.391-1.144h-.715a3.12,3.12,0,0,0-2.37,1.144,2.907,2.907,0,0,0-.613,2.1,7.349,7.349,0,0,1,.127,1.586c-.008.029-.016.049-.025.074a1.763,1.763,0,0,0-.016,1.128,2.916,2.916,0,0,0,.556,1.344,4.946,4.946,0,0,0,.376,1.291,2.283,2.283,0,0,1,.155.964c0,.4-.016.409-.106.437-.969.286-2.407.793-3.269,1.136a7.355,7.355,0,1,1,12.9-4.834A7.288,7.288,0,0,1,17.425,16.7Z"
+                              transform="translate(-3.375 -3.375)"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p id="news-font">朱江源</p>
+                        </div>
                       </div>
-                      <div>
-                        <p id="news-font">朱江源</p>
+                      <div id="svg-flex">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="15.5"
+                            height="17"
+                            viewBox="0 0 15.5 17"
+                          >
+                            <path
+                              id="Icon_awesome-calendar-times"
+                              data-name="Icon awesome-calendar-times"
+                              d="M15.085,5.313H.415A.408.408,0,0,1,0,4.914v-1.2A1.629,1.629,0,0,1,1.661,2.125H3.321V.4A.408.408,0,0,1,3.737,0H5.121a.408.408,0,0,1,.415.4V2.125H9.964V.4a.408.408,0,0,1,.415-.4h1.384a.408.408,0,0,1,.415.4V2.125h1.661A1.629,1.629,0,0,1,15.5,3.719v1.2A.408.408,0,0,1,15.085,5.313ZM.415,6.375h14.67a.408.408,0,0,1,.415.4v8.633A1.629,1.629,0,0,1,13.839,17H1.661A1.629,1.629,0,0,1,0,15.406V6.773A.408.408,0,0,1,.415,6.375Zm8.9,5.313,1.664-1.6a.388.388,0,0,0,0-.564L10,8.586a.428.428,0,0,0-.588,0l-1.664,1.6-1.664-1.6a.428.428,0,0,0-.588,0l-.979.94a.388.388,0,0,0,0,.564l1.664,1.6-1.664,1.6a.388.388,0,0,0,0,.564l.979.94a.428.428,0,0,0,.588,0l1.664-1.6,1.664,1.6a.428.428,0,0,0,.588,0l.979-.94a.388.388,0,0,0,0-.564Z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p id="news-font">2020-10-16</p>
+                        </div>
                       </div>
                     </div>
-                    <div id="svg-flex">
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="15.5"
-                          height="17"
-                          viewBox="0 0 15.5 17"
-                        >
-                          <path
-                            id="Icon_awesome-calendar-times"
-                            data-name="Icon awesome-calendar-times"
-                            d="M15.085,5.313H.415A.408.408,0,0,1,0,4.914v-1.2A1.629,1.629,0,0,1,1.661,2.125H3.321V.4A.408.408,0,0,1,3.737,0H5.121a.408.408,0,0,1,.415.4V2.125H9.964V.4a.408.408,0,0,1,.415-.4h1.384a.408.408,0,0,1,.415.4V2.125h1.661A1.629,1.629,0,0,1,15.5,3.719v1.2A.408.408,0,0,1,15.085,5.313ZM.415,6.375h14.67a.408.408,0,0,1,.415.4v8.633A1.629,1.629,0,0,1,13.839,17H1.661A1.629,1.629,0,0,1,0,15.406V6.773A.408.408,0,0,1,.415,6.375Zm8.9,5.313,1.664-1.6a.388.388,0,0,0,0-.564L10,8.586a.428.428,0,0,0-.588,0l-1.664,1.6-1.664-1.6a.428.428,0,0,0-.588,0l-.979.94a.388.388,0,0,0,0,.564l1.664,1.6-1.664,1.6a.388.388,0,0,0,0,.564l.979.94a.428.428,0,0,0,.588,0l1.664-1.6,1.664,1.6a.428.428,0,0,0,.588,0l.979-.94a.388.388,0,0,0,0-.564Z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p id="news-font">2020-10-16</p>
-                      </div>
+                    <div id="news-bottom-font">
+                      祝贺实验室XXX、XXX、XXX在XXX杂志发表文章.....................................
                     </div>
-                  </div>
-                  <div id="news-bottom-font">
-                    祝贺实验室XXX、XXX、XXX在XXX杂志发表文章.....................................
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div id="news-total-flex">
-          <div id="news-flex">
-            <div className="newsOfresearchGroup">
-              <div className="news-discription">
-                <div>
+          <div id="news-total-flex">
+            <div id="news-flex">
+              <div className="newsOfresearchGroup">
+                <div className="news-discription">
                   <div>
-                    <img
-                      id="nobel-picture"
-                      src={require('./photos/homepage-nobel.jpg')}
-                    />
-                  </div>
-                  <div id="news-top-font">祝贺文章发表</div>
-                  <div className="news-discription-dataflex">
-                    <div id="svg-flex">
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="17"
-                          height="17"
-                          viewBox="0 0 17 17"
-                        >
-                          <path
-                            id="Icon_ionic-ios-contact"
-                            data-name="Icon ionic-ios-contact"
-                            d="M11.875,3.375h0A8.5,8.5,0,0,0,3.424,10.98a8.191,8.191,0,0,0,0,1.79,8.5,8.5,0,0,0,8.451,7.605h0a8.5,8.5,0,0,0,0-17ZM17.425,16.7c-.928-.351-2.431-.866-3.367-1.144-.1-.029-.11-.037-.11-.437a2.326,2.326,0,0,1,.27-.952,4.749,4.749,0,0,0,.376-1.291,2.871,2.871,0,0,0,.556-1.344,1.793,1.793,0,0,0-.016-1.128.724.724,0,0,1-.025-.069,7.349,7.349,0,0,1,.127-1.586,2.92,2.92,0,0,0-.609-2.1,3.124,3.124,0,0,0-2.391-1.144h-.715a3.12,3.12,0,0,0-2.37,1.144,2.907,2.907,0,0,0-.613,2.1,7.349,7.349,0,0,1,.127,1.586c-.008.029-.016.049-.025.074a1.763,1.763,0,0,0-.016,1.128,2.916,2.916,0,0,0,.556,1.344,4.946,4.946,0,0,0,.376,1.291,2.283,2.283,0,0,1,.155.964c0,.4-.016.409-.106.437-.969.286-2.407.793-3.269,1.136a7.355,7.355,0,1,1,12.9-4.834A7.288,7.288,0,0,1,17.425,16.7Z"
-                            transform="translate(-3.375 -3.375)"
-                          />
-                        </svg>
+                    <div>
+                      <img
+                        id="nobel-picture"
+                        src={require('./photos/homepage-nobel.jpg')}
+                      />
+                    </div>
+                    <div id="news-top-font">祝贺文章发表</div>
+                    <div className="news-discription-dataflex">
+                      <div id="svg-flex">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="17"
+                            height="17"
+                            viewBox="0 0 17 17"
+                          >
+                            <path
+                              id="Icon_ionic-ios-contact"
+                              data-name="Icon ionic-ios-contact"
+                              d="M11.875,3.375h0A8.5,8.5,0,0,0,3.424,10.98a8.191,8.191,0,0,0,0,1.79,8.5,8.5,0,0,0,8.451,7.605h0a8.5,8.5,0,0,0,0-17ZM17.425,16.7c-.928-.351-2.431-.866-3.367-1.144-.1-.029-.11-.037-.11-.437a2.326,2.326,0,0,1,.27-.952,4.749,4.749,0,0,0,.376-1.291,2.871,2.871,0,0,0,.556-1.344,1.793,1.793,0,0,0-.016-1.128.724.724,0,0,1-.025-.069,7.349,7.349,0,0,1,.127-1.586,2.92,2.92,0,0,0-.609-2.1,3.124,3.124,0,0,0-2.391-1.144h-.715a3.12,3.12,0,0,0-2.37,1.144,2.907,2.907,0,0,0-.613,2.1,7.349,7.349,0,0,1,.127,1.586c-.008.029-.016.049-.025.074a1.763,1.763,0,0,0-.016,1.128,2.916,2.916,0,0,0,.556,1.344,4.946,4.946,0,0,0,.376,1.291,2.283,2.283,0,0,1,.155.964c0,.4-.016.409-.106.437-.969.286-2.407.793-3.269,1.136a7.355,7.355,0,1,1,12.9-4.834A7.288,7.288,0,0,1,17.425,16.7Z"
+                              transform="translate(-3.375 -3.375)"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p id="news-font">朱江源</p>
+                        </div>
                       </div>
-                      <div>
-                        <p id="news-font">朱江源</p>
+                      <div id="svg-flex">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="15.5"
+                            height="17"
+                            viewBox="0 0 15.5 17"
+                          >
+                            <path
+                              id="Icon_awesome-calendar-times"
+                              data-name="Icon awesome-calendar-times"
+                              d="M15.085,5.313H.415A.408.408,0,0,1,0,4.914v-1.2A1.629,1.629,0,0,1,1.661,2.125H3.321V.4A.408.408,0,0,1,3.737,0H5.121a.408.408,0,0,1,.415.4V2.125H9.964V.4a.408.408,0,0,1,.415-.4h1.384a.408.408,0,0,1,.415.4V2.125h1.661A1.629,1.629,0,0,1,15.5,3.719v1.2A.408.408,0,0,1,15.085,5.313ZM.415,6.375h14.67a.408.408,0,0,1,.415.4v8.633A1.629,1.629,0,0,1,13.839,17H1.661A1.629,1.629,0,0,1,0,15.406V6.773A.408.408,0,0,1,.415,6.375Zm8.9,5.313,1.664-1.6a.388.388,0,0,0,0-.564L10,8.586a.428.428,0,0,0-.588,0l-1.664,1.6-1.664-1.6a.428.428,0,0,0-.588,0l-.979.94a.388.388,0,0,0,0,.564l1.664,1.6-1.664,1.6a.388.388,0,0,0,0,.564l.979.94a.428.428,0,0,0,.588,0l1.664-1.6,1.664,1.6a.428.428,0,0,0,.588,0l.979-.94a.388.388,0,0,0,0-.564Z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p id="news-font">2020-10-16</p>
+                        </div>
                       </div>
                     </div>
-                    <div id="svg-flex">
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="15.5"
-                          height="17"
-                          viewBox="0 0 15.5 17"
-                        >
-                          <path
-                            id="Icon_awesome-calendar-times"
-                            data-name="Icon awesome-calendar-times"
-                            d="M15.085,5.313H.415A.408.408,0,0,1,0,4.914v-1.2A1.629,1.629,0,0,1,1.661,2.125H3.321V.4A.408.408,0,0,1,3.737,0H5.121a.408.408,0,0,1,.415.4V2.125H9.964V.4a.408.408,0,0,1,.415-.4h1.384a.408.408,0,0,1,.415.4V2.125h1.661A1.629,1.629,0,0,1,15.5,3.719v1.2A.408.408,0,0,1,15.085,5.313ZM.415,6.375h14.67a.408.408,0,0,1,.415.4v8.633A1.629,1.629,0,0,1,13.839,17H1.661A1.629,1.629,0,0,1,0,15.406V6.773A.408.408,0,0,1,.415,6.375Zm8.9,5.313,1.664-1.6a.388.388,0,0,0,0-.564L10,8.586a.428.428,0,0,0-.588,0l-1.664,1.6-1.664-1.6a.428.428,0,0,0-.588,0l-.979.94a.388.388,0,0,0,0,.564l1.664,1.6-1.664,1.6a.388.388,0,0,0,0,.564l.979.94a.428.428,0,0,0,.588,0l1.664-1.6,1.664,1.6a.428.428,0,0,0,.588,0l.979-.94a.388.388,0,0,0,0-.564Z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p id="news-font">2020-10-16</p>
-                      </div>
+                    <div id="news-bottom-font">
+                      祝贺实验室XXX、XXX、XXX在XXX杂志发表文章.....................................
                     </div>
-                  </div>
-                  <div id="news-bottom-font">
-                    祝贺实验室XXX、XXX、XXX在XXX杂志发表文章.....................................
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="newsOfresearchGroup">
-              <div className="news-discription">
-                <div>
+              <div className="newsOfresearchGroup">
+                <div className="news-discription">
                   <div>
-                    <img
-                      id="nobel-picture"
-                      src={require('./photos/homepage-nobel.jpg')}
-                    />
-                  </div>
-                  <div id="news-top-font">祝贺文章发表</div>
-                  <div className="news-discription-dataflex">
-                    <div id="svg-flex">
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="17"
-                          height="17"
-                          viewBox="0 0 17 17"
-                        >
-                          <path
-                            id="Icon_ionic-ios-contact"
-                            data-name="Icon ionic-ios-contact"
-                            d="M11.875,3.375h0A8.5,8.5,0,0,0,3.424,10.98a8.191,8.191,0,0,0,0,1.79,8.5,8.5,0,0,0,8.451,7.605h0a8.5,8.5,0,0,0,0-17ZM17.425,16.7c-.928-.351-2.431-.866-3.367-1.144-.1-.029-.11-.037-.11-.437a2.326,2.326,0,0,1,.27-.952,4.749,4.749,0,0,0,.376-1.291,2.871,2.871,0,0,0,.556-1.344,1.793,1.793,0,0,0-.016-1.128.724.724,0,0,1-.025-.069,7.349,7.349,0,0,1,.127-1.586,2.92,2.92,0,0,0-.609-2.1,3.124,3.124,0,0,0-2.391-1.144h-.715a3.12,3.12,0,0,0-2.37,1.144,2.907,2.907,0,0,0-.613,2.1,7.349,7.349,0,0,1,.127,1.586c-.008.029-.016.049-.025.074a1.763,1.763,0,0,0-.016,1.128,2.916,2.916,0,0,0,.556,1.344,4.946,4.946,0,0,0,.376,1.291,2.283,2.283,0,0,1,.155.964c0,.4-.016.409-.106.437-.969.286-2.407.793-3.269,1.136a7.355,7.355,0,1,1,12.9-4.834A7.288,7.288,0,0,1,17.425,16.7Z"
-                            transform="translate(-3.375 -3.375)"
-                          />
-                        </svg>
+                    <div>
+                      <img
+                        id="nobel-picture"
+                        src={require('./photos/homepage-nobel.jpg')}
+                      />
+                    </div>
+                    <div id="news-top-font">祝贺文章发表</div>
+                    <div className="news-discription-dataflex">
+                      <div id="svg-flex">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="17"
+                            height="17"
+                            viewBox="0 0 17 17"
+                          >
+                            <path
+                              id="Icon_ionic-ios-contact"
+                              data-name="Icon ionic-ios-contact"
+                              d="M11.875,3.375h0A8.5,8.5,0,0,0,3.424,10.98a8.191,8.191,0,0,0,0,1.79,8.5,8.5,0,0,0,8.451,7.605h0a8.5,8.5,0,0,0,0-17ZM17.425,16.7c-.928-.351-2.431-.866-3.367-1.144-.1-.029-.11-.037-.11-.437a2.326,2.326,0,0,1,.27-.952,4.749,4.749,0,0,0,.376-1.291,2.871,2.871,0,0,0,.556-1.344,1.793,1.793,0,0,0-.016-1.128.724.724,0,0,1-.025-.069,7.349,7.349,0,0,1,.127-1.586,2.92,2.92,0,0,0-.609-2.1,3.124,3.124,0,0,0-2.391-1.144h-.715a3.12,3.12,0,0,0-2.37,1.144,2.907,2.907,0,0,0-.613,2.1,7.349,7.349,0,0,1,.127,1.586c-.008.029-.016.049-.025.074a1.763,1.763,0,0,0-.016,1.128,2.916,2.916,0,0,0,.556,1.344,4.946,4.946,0,0,0,.376,1.291,2.283,2.283,0,0,1,.155.964c0,.4-.016.409-.106.437-.969.286-2.407.793-3.269,1.136a7.355,7.355,0,1,1,12.9-4.834A7.288,7.288,0,0,1,17.425,16.7Z"
+                              transform="translate(-3.375 -3.375)"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p id="news-font">朱江源</p>
+                        </div>
                       </div>
-                      <div>
-                        <p id="news-font">朱江源</p>
+                      <div id="svg-flex">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="15.5"
+                            height="17"
+                            viewBox="0 0 15.5 17"
+                          >
+                            <path
+                              id="Icon_awesome-calendar-times"
+                              data-name="Icon awesome-calendar-times"
+                              d="M15.085,5.313H.415A.408.408,0,0,1,0,4.914v-1.2A1.629,1.629,0,0,1,1.661,2.125H3.321V.4A.408.408,0,0,1,3.737,0H5.121a.408.408,0,0,1,.415.4V2.125H9.964V.4a.408.408,0,0,1,.415-.4h1.384a.408.408,0,0,1,.415.4V2.125h1.661A1.629,1.629,0,0,1,15.5,3.719v1.2A.408.408,0,0,1,15.085,5.313ZM.415,6.375h14.67a.408.408,0,0,1,.415.4v8.633A1.629,1.629,0,0,1,13.839,17H1.661A1.629,1.629,0,0,1,0,15.406V6.773A.408.408,0,0,1,.415,6.375Zm8.9,5.313,1.664-1.6a.388.388,0,0,0,0-.564L10,8.586a.428.428,0,0,0-.588,0l-1.664,1.6-1.664-1.6a.428.428,0,0,0-.588,0l-.979.94a.388.388,0,0,0,0,.564l1.664,1.6-1.664,1.6a.388.388,0,0,0,0,.564l.979.94a.428.428,0,0,0,.588,0l1.664-1.6,1.664,1.6a.428.428,0,0,0,.588,0l.979-.94a.388.388,0,0,0,0-.564Z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p id="news-font">2020-10-16</p>
+                        </div>
                       </div>
                     </div>
-                    <div id="svg-flex">
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="15.5"
-                          height="17"
-                          viewBox="0 0 15.5 17"
-                        >
-                          <path
-                            id="Icon_awesome-calendar-times"
-                            data-name="Icon awesome-calendar-times"
-                            d="M15.085,5.313H.415A.408.408,0,0,1,0,4.914v-1.2A1.629,1.629,0,0,1,1.661,2.125H3.321V.4A.408.408,0,0,1,3.737,0H5.121a.408.408,0,0,1,.415.4V2.125H9.964V.4a.408.408,0,0,1,.415-.4h1.384a.408.408,0,0,1,.415.4V2.125h1.661A1.629,1.629,0,0,1,15.5,3.719v1.2A.408.408,0,0,1,15.085,5.313ZM.415,6.375h14.67a.408.408,0,0,1,.415.4v8.633A1.629,1.629,0,0,1,13.839,17H1.661A1.629,1.629,0,0,1,0,15.406V6.773A.408.408,0,0,1,.415,6.375Zm8.9,5.313,1.664-1.6a.388.388,0,0,0,0-.564L10,8.586a.428.428,0,0,0-.588,0l-1.664,1.6-1.664-1.6a.428.428,0,0,0-.588,0l-.979.94a.388.388,0,0,0,0,.564l1.664,1.6-1.664,1.6a.388.388,0,0,0,0,.564l.979.94a.428.428,0,0,0,.588,0l1.664-1.6,1.664,1.6a.428.428,0,0,0,.588,0l.979-.94a.388.388,0,0,0,0-.564Z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p id="news-font">2020-10-16</p>
-                      </div>
+                    <div id="news-bottom-font">
+                      祝贺实验室XXX、XXX、XXX在XXX杂志发表文章.....................................
                     </div>
-                  </div>
-                  <div id="news-bottom-font">
-                    祝贺实验室XXX、XXX、XXX在XXX杂志发表文章.....................................
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="newsOfresearchGroup">
-              <div className="news-discription">
-                <div>
+              <div className="newsOfresearchGroup">
+                <div className="news-discription">
                   <div>
-                    <img
-                      id="nobel-picture"
-                      src={require('./photos/homepage-nobel.jpg')}
-                    />
-                  </div>
-                  <div id="news-top-font">祝贺文章发表</div>
-                  <div className="news-discription-dataflex">
-                    <div id="svg-flex">
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="17"
-                          height="17"
-                          viewBox="0 0 17 17"
-                        >
-                          <path
-                            id="Icon_ionic-ios-contact"
-                            data-name="Icon ionic-ios-contact"
-                            d="M11.875,3.375h0A8.5,8.5,0,0,0,3.424,10.98a8.191,8.191,0,0,0,0,1.79,8.5,8.5,0,0,0,8.451,7.605h0a8.5,8.5,0,0,0,0-17ZM17.425,16.7c-.928-.351-2.431-.866-3.367-1.144-.1-.029-.11-.037-.11-.437a2.326,2.326,0,0,1,.27-.952,4.749,4.749,0,0,0,.376-1.291,2.871,2.871,0,0,0,.556-1.344,1.793,1.793,0,0,0-.016-1.128.724.724,0,0,1-.025-.069,7.349,7.349,0,0,1,.127-1.586,2.92,2.92,0,0,0-.609-2.1,3.124,3.124,0,0,0-2.391-1.144h-.715a3.12,3.12,0,0,0-2.37,1.144,2.907,2.907,0,0,0-.613,2.1,7.349,7.349,0,0,1,.127,1.586c-.008.029-.016.049-.025.074a1.763,1.763,0,0,0-.016,1.128,2.916,2.916,0,0,0,.556,1.344,4.946,4.946,0,0,0,.376,1.291,2.283,2.283,0,0,1,.155.964c0,.4-.016.409-.106.437-.969.286-2.407.793-3.269,1.136a7.355,7.355,0,1,1,12.9-4.834A7.288,7.288,0,0,1,17.425,16.7Z"
-                            transform="translate(-3.375 -3.375)"
-                          />
-                        </svg>
+                    <div>
+                      <img
+                        id="nobel-picture"
+                        src={require('./photos/homepage-nobel.jpg')}
+                      />
+                    </div>
+                    <div id="news-top-font">祝贺文章发表</div>
+                    <div className="news-discription-dataflex">
+                      <div id="svg-flex">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="17"
+                            height="17"
+                            viewBox="0 0 17 17"
+                          >
+                            <path
+                              id="Icon_ionic-ios-contact"
+                              data-name="Icon ionic-ios-contact"
+                              d="M11.875,3.375h0A8.5,8.5,0,0,0,3.424,10.98a8.191,8.191,0,0,0,0,1.79,8.5,8.5,0,0,0,8.451,7.605h0a8.5,8.5,0,0,0,0-17ZM17.425,16.7c-.928-.351-2.431-.866-3.367-1.144-.1-.029-.11-.037-.11-.437a2.326,2.326,0,0,1,.27-.952,4.749,4.749,0,0,0,.376-1.291,2.871,2.871,0,0,0,.556-1.344,1.793,1.793,0,0,0-.016-1.128.724.724,0,0,1-.025-.069,7.349,7.349,0,0,1,.127-1.586,2.92,2.92,0,0,0-.609-2.1,3.124,3.124,0,0,0-2.391-1.144h-.715a3.12,3.12,0,0,0-2.37,1.144,2.907,2.907,0,0,0-.613,2.1,7.349,7.349,0,0,1,.127,1.586c-.008.029-.016.049-.025.074a1.763,1.763,0,0,0-.016,1.128,2.916,2.916,0,0,0,.556,1.344,4.946,4.946,0,0,0,.376,1.291,2.283,2.283,0,0,1,.155.964c0,.4-.016.409-.106.437-.969.286-2.407.793-3.269,1.136a7.355,7.355,0,1,1,12.9-4.834A7.288,7.288,0,0,1,17.425,16.7Z"
+                              transform="translate(-3.375 -3.375)"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p id="news-font">朱江源</p>
+                        </div>
                       </div>
-                      <div>
-                        <p id="news-font">朱江源</p>
+                      <div id="svg-flex">
+                        <div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="15.5"
+                            height="17"
+                            viewBox="0 0 15.5 17"
+                          >
+                            <path
+                              id="Icon_awesome-calendar-times"
+                              data-name="Icon awesome-calendar-times"
+                              d="M15.085,5.313H.415A.408.408,0,0,1,0,4.914v-1.2A1.629,1.629,0,0,1,1.661,2.125H3.321V.4A.408.408,0,0,1,3.737,0H5.121a.408.408,0,0,1,.415.4V2.125H9.964V.4a.408.408,0,0,1,.415-.4h1.384a.408.408,0,0,1,.415.4V2.125h1.661A1.629,1.629,0,0,1,15.5,3.719v1.2A.408.408,0,0,1,15.085,5.313ZM.415,6.375h14.67a.408.408,0,0,1,.415.4v8.633A1.629,1.629,0,0,1,13.839,17H1.661A1.629,1.629,0,0,1,0,15.406V6.773A.408.408,0,0,1,.415,6.375Zm8.9,5.313,1.664-1.6a.388.388,0,0,0,0-.564L10,8.586a.428.428,0,0,0-.588,0l-1.664,1.6-1.664-1.6a.428.428,0,0,0-.588,0l-.979.94a.388.388,0,0,0,0,.564l1.664,1.6-1.664,1.6a.388.388,0,0,0,0,.564l.979.94a.428.428,0,0,0,.588,0l1.664-1.6,1.664,1.6a.428.428,0,0,0,.588,0l.979-.94a.388.388,0,0,0,0-.564Z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <p id="news-font">2020-10-16</p>
+                        </div>
                       </div>
                     </div>
-                    <div id="svg-flex">
-                      <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="15.5"
-                          height="17"
-                          viewBox="0 0 15.5 17"
-                        >
-                          <path
-                            id="Icon_awesome-calendar-times"
-                            data-name="Icon awesome-calendar-times"
-                            d="M15.085,5.313H.415A.408.408,0,0,1,0,4.914v-1.2A1.629,1.629,0,0,1,1.661,2.125H3.321V.4A.408.408,0,0,1,3.737,0H5.121a.408.408,0,0,1,.415.4V2.125H9.964V.4a.408.408,0,0,1,.415-.4h1.384a.408.408,0,0,1,.415.4V2.125h1.661A1.629,1.629,0,0,1,15.5,3.719v1.2A.408.408,0,0,1,15.085,5.313ZM.415,6.375h14.67a.408.408,0,0,1,.415.4v8.633A1.629,1.629,0,0,1,13.839,17H1.661A1.629,1.629,0,0,1,0,15.406V6.773A.408.408,0,0,1,.415,6.375Zm8.9,5.313,1.664-1.6a.388.388,0,0,0,0-.564L10,8.586a.428.428,0,0,0-.588,0l-1.664,1.6-1.664-1.6a.428.428,0,0,0-.588,0l-.979.94a.388.388,0,0,0,0,.564l1.664,1.6-1.664,1.6a.388.388,0,0,0,0,.564l.979.94a.428.428,0,0,0,.588,0l1.664-1.6,1.664,1.6a.428.428,0,0,0,.588,0l.979-.94a.388.388,0,0,0,0-.564Z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <p id="news-font">2020-10-16</p>
-                      </div>
+                    <div id="news-bottom-font">
+                      祝贺实验室XXX、XXX、XXX在XXX杂志发表文章.....................................
                     </div>
-                  </div>
-                  <div id="news-bottom-font">
-                    祝贺实验室XXX、XXX、XXX在XXX杂志发表文章.....................................
                   </div>
                 </div>
               </div>

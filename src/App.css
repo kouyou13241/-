@@ -361,3 +361,19 @@ ul{
      display:flex;
      flex-direction: column;
    }
+   /*
+   底部翻页工具
+   */
+   .fliptool
+   {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     margin:50px;
+     margin-left: 380px;
+     margin-right: 100px;
+     margin-bottom: 0px;
+     align-items: center;
+     width:300px;
+    
+   }
