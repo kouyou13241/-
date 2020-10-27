@@ -1,0 +1,379 @@
+#big-font {
+  font-size: 30px;
+  width: 150px;
+}
+
+
+#flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin:10px;
+}
+#title-big-font {
+  font-size: 40px;
+  color: cornflowerblue;
+  margin-top: 10px;
+}
+#title-small-font {
+  font-size: 25px;
+  color: cornflowerblue;
+}
+#paragraph-normal {
+  font-size: 20px;
+}
+#paragraph-big {
+  font-size: 30px;
+}
+#margin-left {
+  flex: 37.5%;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  
+}
+#margin-mid {
+  flex: 15%;
+  margin-bottom: 0px;
+  padding-left: 15x;
+  padding-right: 15px;
+  align-items: center;
+  justify-content: center;
+}
+#margin-right {
+  flex: 47.5%;
+  margin-bottom: 10px;
+}
+.margin-top-discription {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top:0px;
+
+}
+
+.container {
+  display: flex;
+  width: 1100px;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+.title {
+  display: flex;
+  flex-direction: row;
+  height: 75px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0px;
+  margin-left: 0px;
+}
+.title-picture {
+  width: 75px;
+  margin-left: 0px;
+}
+.title-left {
+  display: flex;
+  flex: 20%;
+  flex-direction: row;
+  margin-right: 40px;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.title-right {
+  display: flex;
+  flex: 80%;
+  flex-direction: row;
+  align-items: center;
+  
+ 
+}
+/*导航器开始*/
+.nav
+{
+  width:800px;
+  visibility: visible;
+  
+}
+ul{
+  list-style: none;
+}
+.nav>li{
+  float: left;
+  display:inline;
+  
+}
+.nav-Link{
+  display: block;
+  text-decoration: none;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  color: black;
+}
+.nav-Link-1{
+  display: block;
+  text-decoration: none;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  background-color: white;
+  color: black;
+  float: left;
+}
+
+
+.drop-down{
+  /*position: relative;*/
+  height: 50px;
+}
+.drop-down-content{
+  padding: 0;
+  visibility: hidden;
+  position: relative;
+  z-index: 9999;
+
+  
+  /*position: absolute;*/
+}
+.drop-down-content-1{
+  visibility: hidden;
+  position: absolute;
+  top:0px;
+  left:60px;
+  z-index: 9999;
+  height:200px;
+  
+  /*position: absolute;*/
+}
+.nav-Link:hover{background-color: red;color:white}
+.drop-down-content>li>.nav-Link
+{
+  background-color: white;
+  color: black;
+  float: left;
+}
+.drop-down-content>li>.nav-Link:hover{background-color: red;color:white}
+
+ .drop-down:hover .drop-down-content{
+  visibility: visible;
+  height: 150px;
+}
+.drop-down-content-1:hover li{
+  visibility: visible;
+  height: 50px;
+  
+ 
+}
+.nav-Link-1:hover{background-color: red;
+  color:white;}
+.nav  li ul li:hover ul{visibility: visible;} 
+/*导航器结束*/
+  .bottom {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    height: 50px;
+    background-color: lightslategrey;
+   margin-bottom: 0px;
+  }
+  .bottom-left {
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+    color: lightsteelblue;
+  }
+  .bottom-mid {
+    display: flex;
+    flex: 25%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 10px;
+    font-size: 10px;
+    align-items: center;
+  }
+  .bottom-right {
+    display: flex;
+    flex: 25%;
+    flex-direction: row;
+    margin: 10px;
+    font-size: 10px;
+    align-items: center;
+  }
+  #news-title {
+    font-size: 30px;
+    margin-left: 30px;
+    margin-bottom: 0px;
+    margin-top: 30px;
+  }
+  #nobel-picture {
+    width: 200px;
+  }
+  #svg-flex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  #news-font {
+    font-size: 10px;
+    margin: 10px;
+  }
+  #news-total-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 0px;
+    margin-right: 120px;
+  }
+  #news-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0px;
+    margin-left: 80px;
+  }
+  #news-top-font {
+    color: red;
+    font-size: 25px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    width:200px;
+    height:100px;
+  }
+  #news-top-font p{margin:10px;}
+  #news-bottom-font {
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+    font-size: 5px;
+  }
+  .cs-picture {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+  }
+  .newsOfresearchGroup {
+    display: flex;
+    margin-top: 40px;
+    flex-direction: column;
+  }
+  .news-discription {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .news-discription-dataflex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .content-leaderteam {
+    display: flex;
+    flex-direction: row;
+  }
+  .content-leaderteam-left {
+    display: flex;
+    flex: 40%;
+    flex-direction: column;
+    margin:50px;
+    align-items: center;
+    
+  }
+  .content-leaderteam-right {
+    display: flex;
+    flex:60%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 0px;
+  }
+  .content-researchtarget {
+    display: flex;
+    flex-direction: column;
+    width:800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .content-researchtarget-bottom
+  {
+    display: flex;
+    flex-direction: column;
+    width:600px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+  }
+  #student-bottom-font {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .student {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+  #download-margin {
+    width:100px;
+    display: flex;
+    justify-content: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+   }
+   #download-title-font
+   {
+     color:cornflowerblue;
+     font-size: 10px;
+     margin-top: 0px;
+     margin-bottom: 0px;
+   }
+   .download-flex {
+     display: flex;
+     flex-direction: row;
+     width: 1000px;
+     margin-left: auto;
+     margin-right: auto;
+     margin-top: 0px;
+     margin-bottom: 0px;
+     justify-content: center;
+     align-items: center;
+   }
+   .download-layer-left {
+     display: flex;
+     flex-direction: row;
+     flex: 20%;
+     margin-right: 200px;
+   }
+   .download-layer-right {
+     display: flex;
+     flex: 80%;
+     justify-content:space-between;
+   }
+   .content-articalpublished
+   {
+     display:flex;
+     flex-direction: column;
+   }
+   /*
+   底部翻页工具
+   */
+   .fliptool
+   {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     margin:50px;
+     margin-left: 380px;
+     margin-right: 100px;
+     margin-bottom: 0px;
+     align-items: center;
+     width:300px;
+    
+   }
