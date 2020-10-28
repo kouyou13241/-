@@ -1,20 +1,20 @@
 import React, { Component, useEffect, useState } from 'react';
 import '../asserts/App.css';
-function NewsShow() {
+import 'antd/dist/antd.css';
+import { Row, Col } from 'antd';
+function NewsShow(props: { row: any; }) {
     
     const [res, setRes] = useState<any>();
     const [page, setPage] = useState(1);
     
     useEffect(() => {
-      fetch('/api/sci/news/plus/time/desc?page='+page+'&rows=3').then(async (response) => {
+      fetch('/api/sci/news/plus/time/desc?page='+page+'&rows='+props.row).then(async (response) => {
         setRes(await response.json());
       });
     }, [page]);
     
     let count=res?res.data.count:NaN;
-    let pages=Math.ceil(count/3);
-    let remain=count-(pages-1)*3;
-   
+    let pages=Math.ceil(count/props.row);
     function Fliptool()
     {
       return( <div className="fliptool">
@@ -102,70 +102,37 @@ function NewsShow() {
     function frontPage() {
       setPage((page)=>(1));
     }
-    
-      if(count)
-      {
-        console.log(res);
-        console.log(page);
-      if(page<pages)
-      return (
-      <div>
-      <div id="news-flex">
-        <Getnewsfliter  res={res} numbers={0} />
-        <Getnewsfliter  res={res} numbers={1} />
-        <Getnewsfliter  res={res} numbers={2} />
+    return res?.data?.value ?(
+      <div >
+        
+        
+        <Row>
+          
+          {res.data.value.map((item: any)=>(
+            <Col span={8} style={{display:'flex',justifyContent:'center'}}><Getnewsfliter title={item.title} gmtCreate={item.gmtCreate} userId={item.userId}></Getnewsfliter> </Col>
+          ))}
+        </Row>
+          
+        
+        <Fliptool/>
       </div>
-       <Fliptool/>
-        </div>
-        );
-        if(page===pages)
-        {
-          switch(remain)
-          {
-            case 1:
-              return (
-              <div>
-              <div id="news-flex">
-                <Getnewsfliter  res={res} numbers={0} />
-              </div>
-               <Fliptool/>
-                </div>);
-            case 2:
-              return (
-                <div>
-                <div id="news-flex">
-                  <Getnewsfliter  res={res} numbers={0} />
-                  <Getnewsfliter  res={res} numbers={1} />
-                </div>
-                 <Fliptool/>
-                  </div>);
-            case 3:
-              return (
-                <div>
-                <div id="news-flex">
-                  <Getnewsfliter  res={res} numbers={0} />
-                  <Getnewsfliter  res={res} numbers={1} />
-                  <Getnewsfliter  res={res} numbers={2} />
-                </div>
-                 <Fliptool/>
-                  </div>);
-          }
-        }
-      }
+    ):(
+       <p>isLoading...</p>
+    );
+       
     
-    return (<p>isLoading...</p>);
   }
   function Changetime(time: string | number | Date) {
     let outcome = new Date(time);
     let final = String(outcome);
     return final;
   }
-  function Getnewsfliter(props: { numbers: React.ReactText; res: { data: { value: { [x: string]: {gmtCreate:any; title:any;userId: React.ReactNode; }; }; }; }; })
+  function Getnewsfliter(props: { gmtCreate: string | number | Date; title: React.ReactNode; userId: React.ReactNode; })
   {
       
       function Time()
       {
-        let a=Changetime(props.res.data.value[props.numbers].gmtCreate)
+        let a=Changetime(props.gmtCreate)
         let b=a.substring(4,16);
         return b;
       }
@@ -180,7 +147,7 @@ function NewsShow() {
           />
         </div>
         <div id="news-top-font">
-        {props.res.data.value[props.numbers].title}
+        {props.title}
         </div>
         <div className="news-discription-dataflex">
           <div id="svg-flex">
@@ -200,7 +167,7 @@ function NewsShow() {
               </svg>
             </div>
             <div>
-              <p id="news-font">{props.res.data.value[props.numbers].userId}</p>
+              <p id="news-font">{props.userId}</p>
             </div>
           </div>
           <div id="svg-flex">
@@ -230,21 +197,5 @@ function NewsShow() {
     </div>
   </div>);
   }
-  class HomePage extends Component {
-    render() {
-      return (
-        <div>
-          <div className="cs-picture">
-            <img src={require('../asserts/homepage-cs.jpg')} />
-          </div>
-          <div id="news-total-flex">
-            <p id="news-title">课题组新闻</p>
-            <div >
-              <NewsShow/>
-            </div>
-          </div>
-        </div>
-      );
-    }
-  }
-  export default HomePage;
+ 
+  export default NewsShow;

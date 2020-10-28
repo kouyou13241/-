@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>文档流</title>
+    <style>
+     
+        .nav{
+            width: 160px;
+            height: auto;
+            position: fixed;
+            left: 200px;
+            top: 200px;
+         
+        }
+        .nav-li{
+            width: 160px;
+            height: 40px;
+            background-color: #CCC;
+            border-bottom: 1px solid #FFF;
+            text-align: center;
+            line-height: 40px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .tit{
+            width: 160px;
+            height: 40px;
+        }
+        .nav-li ul{
+            width: 160px;
+            height: auto;
+            background-color: #CCC;
+            border:1px solid #FFF;
+            position: relative;
+            left: 160px;
+            top: -40px;
+            display: none;
+        }
+        .nav-li ul li{
+            width: 160px;
+            height: 40px;
+            border-bottom: 1px dashed #666;
+            color: #333;
+            line-height: 40px;
+            text-align: center;
+        }
+        .nav-li:hover ul{
+            display: block;
+        }
+        /*一级菜单选择后的样式*/
+        .nav-li:hover{
+            color: #FFF;
+        }
+        .list-3{
+            width: 160px;
+            height: auto;
+            background-color: #CCC;
+            color: black;
+            border:1px solid #FFF;
+            position: relative;
+            left: 160px;
+            top: -40px;
+            display: none;
+        }
+        .list-3Dom{
+            width: 100px;
+            height: 50px;
+            border-bottom: 1px solid #FFF;
+            line-height: 40px;
+            text-align: center;
+
+        }
+        .nav-li ul li:hover .list-3{
+            display: block;
+        }
+        /*二级标题滑动样式*/
+        .nav-li ul li:hover{
+            color: #FFF;
+        }
+        .nav-li ul li .list-3Dom:hover{
+            color: #FFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div class="nav-li">
+            <div class="tit">导航一</div>
+            <ul>
+                <li>
+                    <div class="tit-3">二级标题一</div>
+                    <div class="list-3">
+                        <div class="list-3Dom">三级标题一</div>
+                        <div class="list-3Dom">三级标题一</div>
+                        <div class="list-3Dom">三级标题一</div>
+                        <div class="list-3Dom">三级标题一</div>
+                        <div class="list-3Dom">三级标题一</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="tit-3">二级标题二</div>
+                    <div class="list-3">
+                        <div class="list-3Dom">三级标题二</div>
+                        <div class="list-3Dom">三级标题二</div>
+                        <div class="list-3Dom">三级标题二</div>
+                        <div class="list-3Dom">三级标题二</div>
+                        <div class="list-3Dom">三级标题二</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="tit-3">二级标题三</div>
+                    <div class="list-3">
+                        <div class="list-3Dom">三级标题三</div>
+                        <div class="list-3Dom">三级标题三</div>
+                        <div class="list-3Dom">三级标题三</div>
+                        <div class="list-3Dom">三级标题三</div>
+                        <div class="list-3Dom">三级标题三</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="tit-3">二级标题四</div>
+                    <div class="list-3">
+                        <div class="list-3Dom">三级标题四</div>
+                        <div class="list-3Dom">三级标题四</div>
+                        <div class="list-3Dom">三级标题四</div>
+                        <div class="list-3Dom">三级标题四</div>
+                        <div class="list-3Dom">三级标题四</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="tit-3">二级标题五</div>
+                    <div class="list-3">
+                        <div class="list-3Dom">三级标题五</div>
+                        <div class="list-3Dom">三级标题五</div>
+                        <div class="list-3Dom">三级标题五</div>
+                        <div class="list-3Dom">三级标题五</div>
+                        <div class="list-3Dom">三级标题五</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-li">
+            <div>导航二</div>
+            <ul>
+                <li>
+                    二级标题一
+                    <div class="list-3">
+                        <div class="list-3Dom">三级标题一</div>
+                        <div class="list-3Dom">三级标题一</div>
+                        <div class="list-3Dom">三级标题一</div>
+                        <div class="list-3Dom">三级标题一</div>
+                        <div class="list-3Dom">三级标题一</div>
+                    </div>
+                </li>
+                <li>二级标题一</li>
+                <li>二级标题一</li>
+                <li>二级标题一</li>
+                <li>二级标题一</li>
+            </ul>
+        </div>
+        <div class="nav-li">
+            <div class="tit">导航三</div>
+            <ul>
+                <li>二级标题三</li>
+                <li>二级标题三</li>
+                <li>二级标题三</li>
+                <li>二级标题三</li>
+                <li>二级标题三</li>
+            </ul>
+        </div>
+        <div class="nav-li">导航四</div>
+        <div class="nav-li">导航五</div>
+    </div>
+</body>
+</html>

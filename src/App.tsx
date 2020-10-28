@@ -4,14 +4,13 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Title from './pages/Title'
 import Bottom from './pages/Bottom'
-import NewsShow from './pages/NewsShow'
+import TeamNews from './pages/TeamNews'
 import LeaderTeam from './pages/LeaderTeam'
 import ArticalPublished from './pages/ArticalPublished'
 import ResourseDownload from './pages/Download'
 import ResearchTarget from './pages/ResearchTarget'
-import HomePage from './pages/NewsShow'
 import English from './pages/English'
-import TeamNews from './pages/TeamNews'
+import HomePage from './pages/HomePage'
 import StudentShow from './pages/Studentshow'
 class Main extends Component {
   render() {
