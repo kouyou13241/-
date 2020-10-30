@@ -8,7 +8,7 @@ function NewsShow(props: { row: any; }) {
     const [page, setPage] = useState(1);
     
     useEffect(() => {
-      fetch('/api/sci/news/plus/time/desc?page='+page+'&rows='+props.row).then(async (response) => {
+      fetch('/platform-scientific/api/sci/news/plus/time/desc?page='+page+'&rows='+props.row).then(async (response) => {
         setRes(await response.json());
       });
     }, [page]);
@@ -17,7 +17,8 @@ function NewsShow(props: { row: any; }) {
     let pages=Math.ceil(count/props.row);
     function Fliptool()
     {
-      return( <div className="fliptool">
+      return( 
+      <div className="fliptool">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="18.615"
@@ -103,7 +104,7 @@ function NewsShow(props: { row: any; }) {
       setPage((page)=>(1));
     }
     return res?.data?.value ?(
-      <div >
+      <div style={{marginLeft:'45px',width:'1000px'}}>
         
         
         <Row>

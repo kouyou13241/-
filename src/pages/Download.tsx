@@ -1,19 +1,12 @@
 import '../asserts/App.css';
 import React, { Component, useEffect, useState } from 'react';
 import { findAllByDisplayValue } from '@testing-library/react';
-function Downloadlayer(props: {
-  title: React.ReactNode;
-  form: React.ReactNode;
-  space: React.ReactNode;
-  numbers: React.ReactNode;
-  date: React.ReactNode;
-  name: React.ReactNode;
-}) {
+function Downloadlayer(props: { link: string | undefined; title: React.ReactNode; form: React.ReactNode; space: React.ReactNode; numbers: React.ReactNode; date: React.ReactNode; name: React.ReactNode; }) {
   return (
     <div>
       <div className="download-flex">
         <div className="download-layer-left">
-          <p id="download-title-font">{props.title}</p>
+          <p id="download-title-font" ><a href={props.link}>{props.title}</a></p>
         </div>
         <div className="download-layer-right">
           <div>
@@ -52,7 +45,7 @@ function DownloadShow(props: { row:any }) {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    fetch('/api/sci/resource/filter?page=' + page + '&rows=' + props.row).then(
+    fetch('/platform-scientific/api/sci/resource/filter?page=' + page + '&rows=' + props.row).then(
       async (response) => {
         setRes(await response.json());
       },
@@ -203,6 +196,7 @@ function DownloadShow(props: { row:any }) {
             numbers={item.downloads}
             date={Time(item.gmtCreate)}
             name={item.createBy}
+            link={item.link}
           />
         ))}
       </div>

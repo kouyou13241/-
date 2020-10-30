@@ -1,9 +1,10 @@
 import '../asserts/App.css';
 import React, { Component, useEffect, useState } from 'react';
 function Bottom() {
+  const copyright='&copy Copyright 2019.All Right Reserve';
     return (
       <div className="bottom">
-        <div className="bottom-left"> Copyright 2019.All Right Reserve</div>
+        <div className="bottom-left" > <div dangerouslySetInnerHTML={{__html:copyright}}></div></div>
         <div className="bottom-mid">
           <div>
             <svg
