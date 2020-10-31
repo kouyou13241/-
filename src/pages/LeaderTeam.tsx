@@ -146,7 +146,7 @@ function TeachersShow(props: { row: any }) {
         <div>
           {page}/{pages}
         </div>
-        <div>下一页</div>
+        <div >下一页</div>
 
         <svg
           xmlns="http://www.w3.org/2000/svg"
