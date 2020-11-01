@@ -55,7 +55,7 @@
 }
 .container {
   display: flex;
-  width: 1100px;
+  width:1100px;
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
@@ -79,7 +79,7 @@
   display: flex;
   flex: 20%;
   flex-direction: row;
-  margin-right: 40px;
+  margin-left: 40px;
   flex-wrap: nowrap;
   align-items: center;
 }
@@ -95,90 +95,8 @@
   
  
 }
-/*导航器开始*/
-.nav
-{
-  width:900px;
-  visibility: visible;
-  height:50px;
-  
-}
-ul{
-  list-style: none;
-}
-.nav>li{
-  float: left;
-  display:inline;
-  
-}
-.nav-Link{
-  display: block;
-  text-decoration: none;
-  width: 100px;
-  height: 50px;
-  text-align: center;
-  line-height: 50px;
-  color: black;
-}
-.nav-Link-1{
-  display: block;
-  text-decoration: none;
-  width: 100px;
-  height: 50px;
-  text-align: center;
-  line-height: 50px;
-  background-color: white;
-  color: black;
-  float: left;
-}
 
 
-.drop-down{
-  /*position: relative;*/
-  height: 50px;
-}
-.drop-down-content{
-  padding: 0;
-  visibility: hidden;
-  position: relative;
-  z-index: 9999;
-
-  
-  /*position: absolute;*/
-}
-.drop-down-content-1{
-  visibility: hidden;
-  position: absolute;
-  top:0px;
-  left:60px;
-  z-index: 9999;
-  height:200px;
-  
-  /*position: absolute;*/
-}
-.nav-Link:hover{background-color: red;color:white}
-.drop-down-content>li>.nav-Link
-{
-  background-color: white;
-  color: black;
-  float: left;
-}
-.drop-down-content>li>.nav-Link:hover{background-color: red;color:white}
-
- .drop-down:hover .drop-down-content{
-  visibility: visible;
-  height: 150px;
-}
-.drop-down-content-1:hover li{
-  visibility: visible;
-  height: 50px;
-  
- 
-}
-.nav-Link-1:hover{background-color: red;
-  color:white;}
-.nav  li ul li:hover ul{visibility: visible;} 
-/*导航器结束*/
   .bottom {
     display: flex;
     align-items: center;
@@ -396,4 +314,9 @@ ul{
      align-items: center;
      width:300px;
     
+   }
+
+   #changetohand
+   {
+     cursor: hand;
    }
