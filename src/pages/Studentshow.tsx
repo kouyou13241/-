@@ -32,19 +32,19 @@ function Student(props: { row: any; })
   let count=res?res.data.count:NaN;
   let pages=Math.ceil(count/props.row);
   return res?.data?.value ?(
-    <div >
-      
-      
-      <Row>
+    <div>
+    <div style={{width:"70%",marginLeft:'auto',marginRight:'auto'}}>
+      <Row >
         
         {res.data.value.map((item: any)=>(
           <Col span={8} style={{display:'flex',justifyContent:'center'}}><GetStudentFliter state={item.state} studentName={item.studentName} position={item.position}></GetStudentFliter> </Col>
         ))}
       </Row>
-      <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'30px'}}>
-      <Pagination defaultCurrent={1} total={count} pageSize={props.row} onChange={(page)=>(setPage(page))}/>
-        
-        </div>   
+       
+    </div>
+    <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'30px'}}>
+    <Pagination defaultCurrent={1} total={count} pageSize={props.row} onChange={(page)=>(setPage(page))}/>
+    </div>  
     </div>
   ):(
      <p>isLoading...</p>

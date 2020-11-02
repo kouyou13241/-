@@ -1,5 +1,6 @@
 import '../asserts/App.css';
 import React, { Component, useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Link,useParams } from 'react-router-dom';
 function Getteachersfliter(props: {
   value:any;
   name: React.ReactNode;
@@ -9,6 +10,7 @@ function Getteachersfliter(props: {
   award: any;
   experience: any;
 }) {
+ 
   return (
     <div className="content-leaderteam">
       <div className="content-leaderteam-left">
@@ -69,12 +71,13 @@ function Getteachersfliter(props: {
     </div>
   );
 }
-function TeachersShow(props: { row: string; }) {
+function TeachersShow() {
   const [res, setRes] = useState<any>();
   const [author, setAuthor] = useState<any>();
+  let {id}=useParams();
   useEffect(() => {
     fetch(
-      '/platform-scientific/api/sci/teacher/filter/detail?page=1&rows='+props.row    )
+      '/platform-scientific/api/sci/teacher/filter/detail?id='+id)
       .then((response) => {
         return response.json();
       })
@@ -94,7 +97,7 @@ function TeachersShow(props: { row: string; }) {
       .then((author) => {
         setAuthor(author);
       });
-  }, []);
+  }, [id]);
   let count = res ? res.data.count : NaN;
   let value = res ? res.data.value[0] : NaN;
   let Author=author?author.data.value:NaN;
@@ -115,10 +118,11 @@ function TeachersShow(props: { row: string; }) {
     <p>isLoading...</p>
   );
 }
-function Libing()
+function Teacher()
 {
+  
     return(
-                <TeachersShow row='1'></TeachersShow>
+                <TeachersShow></TeachersShow>
     );
 }
-export default Libing;
+export default Teacher;

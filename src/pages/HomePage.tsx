@@ -4,9 +4,9 @@ import NewsShow from './NewsShow'
 class HomePage extends Component {
     render() {
       return (
-        <div>
+        <div style={{display:'flex',flexDirection:'column',justifyContent:'center'}}>
           <div className="cs-picture">
-            <img src={require('../asserts/homepage-cs.jpg')} />
+            <img  src={require('../asserts/cs.jpg')} width='100%' />
           </div>
           <div id="news-total-flex">
             <p id="news-title">课题组新闻</p>

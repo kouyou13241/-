@@ -5,7 +5,7 @@ import NewsShow from './NewsShow'
 class TeamNews extends Component {
     render() {
       return (
-           <div>
+           <div style={{display:'flex',justifyContent:'center'}}>
          <NewsShow row='6'/>
           </div>
        
