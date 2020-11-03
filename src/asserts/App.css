@@ -53,21 +53,21 @@
   margin-top:0px;
 
 }
-.container {
+#container {
   display: flex;
   flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
-  width:auto;
+  margin-top: auto;
+ height:100%;
+  
 }
 .title {
   display: flex;
   flex-direction: row;
   height: 75px;
   justify-content: center;
-  margin-top: 0px;
+  margin-top: 10px;
   margin-left: 0px;
+  flex:0 0 auto;
 }
 .title-picture {
   width: 75px;
@@ -89,9 +89,12 @@
   align-items: center;
   justify-content: flex-start;
   margin-top: 15px;
-  height:50px;
-  
- 
+  height:50px; 
+}
+@media screen and (max-width:1200px)
+{
+  .title-left{flex:30%}
+  .title-right{flex:70%}
 }
 
 
@@ -101,7 +104,9 @@
     margin-top: 40px;
     height: 50px;
     background-color: lightslategrey;
-   margin-bottom: 0px;
+    margin-bottom: 0px;
+    flex:0 0 auto;
+    
   }
   .bottom-left {
     flex: 50%;
@@ -157,7 +162,7 @@
 
   }
   #news-top-font {
-    color: red;
+    color: #0050b3;
     font-size: 25px;
     margin-top: 15px;
     margin-bottom: 20px;
@@ -176,7 +181,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 200px;
-    font-size: 5px;
+    
   }
   .cs-picture {
     margin-left: auto;
@@ -287,11 +292,13 @@
      display: flex;
      flex: 80%;
      justify-content:space-between;
+    
    }
    .content-articalpublished
    {
      display:flex;
      flex-direction: column;
+     flex:1;
    }
    .topnav-articalpublished
    {
@@ -316,7 +323,8 @@
     
    }
 
-   #changetohand
+   #body-flex
    {
-     cursor: hand;
+    flex:1 0 auto;
    }
+  

@@ -13,17 +13,28 @@ import English from './pages/English'
 import HomePage from './pages/HomePage'
 import StudentShow from './pages/Studentshow'
 
-class Main extends Component {
-  render() {
+
+function Main ()
+{
+  
+
+
+
     return (
-      <div className="container">
+     
+        
         <Router>
+          
           <Title />
+        <div id='body-flex'>
           <Route path="/"  exact >
-            <HomePage/>
+          <HomePage/>
           </Route>
           <Route path="/leaderteam/:id">
             <Teacher/>
+          </Route>
+          <Route path="/news/: id"> 
+          <News/>
           </Route>
           <Route path="/teamnews" component={TeamNews} />
           <Route path="/studentshow" component={StudentShow} />
@@ -31,12 +42,16 @@ class Main extends Component {
           <Route path="/resoursedownload" component={ResourseDownload} />
           <Route path="/articalpublished" component={ArticalPublished} />
           <Route path="/english" component={English} />
-        </Router>
-        <Bottom />
-        
-      </div>
+        </div>
+           <Bottom />
+           
+          </Router>
+     
     );
-  }
+    
+     
+   
+  
 }
 
 export default Main;

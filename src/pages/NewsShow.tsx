@@ -103,7 +103,8 @@ function NewsShow(props: { row: any; }) {
           </div>
         </div>
         <div id="news-bottom-font">
-          祝贺实验室XXX、XXX、XXX在XXX杂志发表文章.....................................
+          
+          祝贺实验室XXX、XXX、XXX在XXX杂志发表文章................
         </div>
       </div>
     </div>

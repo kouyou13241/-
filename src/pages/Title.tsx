@@ -9,9 +9,7 @@ function Title() {
     fetch('/platform-scientific/api/sci/teacher/filter/detail').then(async (response) => {
       setRes(await response.json());
     });
-  }, []);
-  console.log(res);
-  
+  }, []); 
   let value=res?res.data.value:NaN;
   return value?(
     <div className="title">
