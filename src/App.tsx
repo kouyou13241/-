@@ -12,8 +12,7 @@ import ResearchTarget from './pages/ResearchTarget'
 import English from './pages/English'
 import HomePage from './pages/HomePage'
 import StudentShow from './pages/Studentshow'
-
-
+import News from './pages/News';
 function Main ()
 {
   
@@ -33,7 +32,7 @@ function Main ()
           <Route path="/leaderteam/:id">
             <Teacher/>
           </Route>
-          <Route path="/news/: id"> 
+          <Route path="/news/:id">
           <News/>
           </Route>
           <Route path="/teamnews" component={TeamNews} />

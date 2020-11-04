@@ -3,6 +3,7 @@ import '../asserts/App.css';
 import 'antd/dist/antd.css';
 import { Row, Col } from 'antd';
 import { Pagination } from 'antd';
+import { Link } from 'react-router-dom';
 function NewsShow(props: { row: any; }) {
     
     const [res, setRes] = useState<any>();
@@ -23,7 +24,7 @@ function NewsShow(props: { row: any; }) {
         <Row>
           
           {res.data.value.map((item: any)=>(
-            <Col span={8} style={{display:'flex',justifyContent:'center'}}><Getnewsfliter title={item.title} gmtCreate={item.gmtCreate} userId={item.userId}></Getnewsfliter> </Col>
+            <Col span={8} style={{display:'flex',justifyContent:'center'}}><Getnewsfliter id={item.id}title={item.title} gmtCreate={item.gmtCreate} userId={item.userId}></Getnewsfliter> </Col>
           ))}
         </Row>
         <div style={{display:'flex',justifyContent:'center',alignItems:'center',marginTop:'30px'}}>
@@ -39,7 +40,7 @@ function NewsShow(props: { row: any; }) {
     let final = String(outcome);
     return final;
   }
-  function Getnewsfliter(props: { gmtCreate: string | number | Date; title: React.ReactNode; userId: React.ReactNode; })
+  function Getnewsfliter(props: { id:any;gmtCreate: string | number | Date; title: React.ReactNode; userId: React.ReactNode; })
   {
       
       function Time()
@@ -59,7 +60,7 @@ function NewsShow(props: { row: any; }) {
           />
         </div>
         <div id="news-top-font">
-        {props.title}
+        <Link to={"/news/"+props.id} >{props.title}</Link>
         </div>
         <div className="news-discription-dataflex">
           <div id="svg-flex">

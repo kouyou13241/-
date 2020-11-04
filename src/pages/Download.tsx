@@ -1,6 +1,10 @@
 import '../asserts/App.css';
 import React, { Component, useEffect, useState } from 'react';
 import { Pagination } from 'antd';
+import { Input } from 'antd';
+import { AudioOutlined } from '@ant-design/icons';
+
+const { Search } = Input;
 function Downloadlayer(props: { logo:any;link: string | undefined; title: React.ReactNode; form: React.ReactNode; space: React.ReactNode; numbers: React.ReactNode; date: React.ReactNode; name: React.ReactNode; }) {
   return (
     <div>
@@ -43,14 +47,14 @@ function Time(time: string | number | Date) {
 function DownloadShow(props: { row:any }) {
   const [res, setRes] = useState<any>();
   const [page, setPage] = useState(1);
-
+  const [title,setTitle] = useState();
   useEffect(() => {
-    fetch('/platform-scientific/api/sci/resource/filter?page=' + page + '&rows=' + props.row).then(
+    fetch('/platform-scientific/api/sci/resource/filter?page=' + page + '&rows=' + props.row+'&title='+title).then(
       async (response) => {
         setRes(await response.json());
       },
     );
-  }, [page]);
+  }, [page,title]);
 
   let count = res ? res.data.count : NaN;
   let pages = Math.ceil(count / props.row);
@@ -58,7 +62,9 @@ function DownloadShow(props: { row:any }) {
   return res?.data?.value ? (
     <div>
       <div>
-        <div>
+        <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
+        <div style={{width:'200px',margin:'50px',marginTop:'10px'}}>
+          <Search placeholder="input search text"  enterButton /></div>
           <div className="download-flex">
             <div className="download-layer-left">
               <svg
